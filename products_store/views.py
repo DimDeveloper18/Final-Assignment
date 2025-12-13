@@ -11,3 +11,6 @@ def tools(request):
         'comments': Comment.objects.all(),
     }
     return render(request, 'products_store/tools.html', comments)
+
+def contact(request):
+    return render(request, 'products_store/contact.html')
