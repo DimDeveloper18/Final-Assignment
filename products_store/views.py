@@ -14,3 +14,6 @@ def tools(request):
 
 def contact(request):
     return render(request, 'products_store/contact.html')
+
+def delivery(request):
+    return render(request, 'products_store/delivery.html')
