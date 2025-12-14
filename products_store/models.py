@@ -10,3 +10,6 @@ class Comment(models.Model):
     comtext = models.TextField()
     commented_date = models.DateTimeField(default=timezone.now)
     comwriter = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comname
