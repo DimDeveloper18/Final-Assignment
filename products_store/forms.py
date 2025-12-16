@@ -21,3 +21,27 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class UserUpdateDetailsForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+class User_profileUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = User_profile
+        fields = ['image']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comname', 'comtext']
+        labels = {
+            "comname": "Name", "comtext": "Comment",
+        }
+        widgets = {
+            "comtext": forms.Textarea(attrs={"rows": 3})
+        }
