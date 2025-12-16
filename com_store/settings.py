@@ -125,3 +125,6 @@ CRISPY_FAIL_SILENTLY = not DEBUG
 
 LOGIN_REDIRECT_URL = 'products_store-index'
 LOGIN_URL = 'products_store-login'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
