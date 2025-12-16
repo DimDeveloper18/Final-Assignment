@@ -9,6 +9,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products_store.urls')),
+    path('password-reset/', auth_views.PasswordResetView.as_view(
+        template_name='products_store/password_reset.html'), name='password_reset'),
 ]
 
 if settings.DEBUG:
