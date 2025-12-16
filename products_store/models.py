@@ -13,3 +13,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comname
+    
+class User_profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(storage=MediaCloudinaryStorage(), upload_to='profile_pics/')
+
+    def __str__(self):
+        return f'{self.user.username} User_profile'
