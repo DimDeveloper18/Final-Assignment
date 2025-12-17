@@ -3,6 +3,7 @@ from .models import Comment
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -66,3 +67,9 @@ def comments_view(request):
         'comments': Comment.objects.all(),
     }
     return render(request, 'products_store/comments_page.html', com_consist)
+
+class CommentsList(ListView):
+    model = Comment
+    template_name = 'products_store/tools.html'
+    com_consist_object_name = 'comments'
+    com_sorting = ['-commented_date']
