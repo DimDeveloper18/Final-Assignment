@@ -3,8 +3,8 @@ from .models import Comment
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 
@@ -85,3 +85,17 @@ class CommentsCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.comwriter = self.request.user
         return super().form_valid(form)
+    
+class CommentsUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['comname', 'comtext']
+
+    def form_valid(self, form):
+        form.instance.comwriter = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.comwriter:
+            return True
+        return False
