@@ -2,7 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.urls import reverse
 # from cloudinary_storage.storage import MediaCloudinaryStorage
+
+User = get_user_model()
 
 # Create your models here.
 
@@ -14,6 +17,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comname
+    
+    def get_absolute_url(self):
+        return reverse('products_store-comment-detail', kwargs={"pk": self.pk})
     
 class User_profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
