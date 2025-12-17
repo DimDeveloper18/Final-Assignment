@@ -59,4 +59,10 @@ def profile_page(request):
         'uud_form': uud_form,
         'upu_form': upu_form
     }
-    return render(request, 'products_store/profile.html')
+    return render(request, 'products_store/profile.html', content)
+
+def comments_view(request):
+    com_consist = {
+        'comments': Comment.objects.all(),
+    }
+    return render(request, 'products_store/comments_page.html', com_consist)
