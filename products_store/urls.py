@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import CommentsList, CommentsDetail
+from .views import CommentsList, CommentsDetail, CommentsCreate
 
 urlpatterns = [
     path('', views.index, name='products_store-index'),
@@ -16,4 +16,5 @@ urlpatterns = [
     path('comments_view/', views.comments_view, name='products_store-comments-view'),
     path('tools/', CommentsList.as_view(), name='products_store-tools'),
     path('comment/<int:pk>', CommentsDetail.as_view(), name='products_store-comment-detail'),
+    path('comment/create/', CommentsCreate.as_view(), name='products_store-comment-create'),
 ]
