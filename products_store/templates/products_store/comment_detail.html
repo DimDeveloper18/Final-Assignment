@@ -1,0 +1,26 @@
+{% extends 'products_store/base.html' %}
+{% load static %}
+{% block main %}
+        {% if user.is_authenticated %}
+            <section id="comresult">
+                <h3>Comment</h3>
+                    <a class="ps-5" href="{% url 'products_store-comment-create' %}">Create Comment</a>
+                        <ul class="list-unstyled text-start border border-dark border-3 px-5">
+                            <img id="comw_img" src="{{ user.comwriter.user_profile.image.url }}" class="rounded border border-dark border-4 my-4">
+                            <li class="fs-4 fw-bold">{{ comment.comname }} </li>
+                            <li>{{ comment.comtext }}</li>
+                            <li class="fs-6"> Name: {{ comment.comwriter }} </li>
+                            <li class="fs-6"> Date: {{ comment.commented_date }} </li>
+                        </ul>
+                        <div id="subButtReg">
+                            <button type="submit" class="btn btn-secondary border border-dark border-2"><a class="text-white" href="{% url 'products_store-comment-update' object.id %}">Update</a></button>
+                            <button type="submit" class="btn btn-danger border border-dark border-2"><a class="text-white" href="{% url 'products_store-comment-delete' object.id %}">Delete</a></button>
+                        </div>
+            </section>
+        {% else %}
+            <ul class="list-unstyled fs-4 fw-bold">
+                <li>Only registered users can see comments.</li>
+                <li>Please register or login.</li>
+            </ul>
+        {% endif %}
+{% endblock main %}
