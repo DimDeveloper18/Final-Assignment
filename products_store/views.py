@@ -102,7 +102,7 @@ class CommentsUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     
 class CommentsDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
-    success_url = "products_store-tools"
+    success_url = 'products_store-comments-view'
 
     def test_func(self):
         comment = self.get_object()
