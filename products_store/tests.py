@@ -34,3 +34,29 @@ class CommentTest(TestCase):
         comment = Comment.objects.get(id=1)
         self.assertEqual(comment.get_absolute_url(), 
                             reverse('products_store-comment-detail', args=[comment.id]))
+        
+class CommentViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.comment = Comment.objects.create(
+            comwriter=self.user,
+            comname='Test Comment',
+            comtext='This is test for comment'
+        )
+
+    def test_comment_list(self):
+        url = reverse('products_store-tools')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_comments_create(self):
+        self.client.login(username='testuser', password='12345')
+        url = reverse ('products_store-comment-create')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post(url, {'comname': 'New comment name',
+            'comtext': 'New comment text'})
+        
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Comment.objects.filter(comname='New comment name').exists())
