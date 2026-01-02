@@ -2,237 +2,59 @@
 {% load static %}
 {% block main %}
     <div>
-        <div class="ptools">
-            <table id="pttable" class="caption-top">
-                <caption id="ptcap">Power Tools</caption>
-                <tr class="rowprod">
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col" id="itemNum">Product ID</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col" id="thimg">Images</th>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>2 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GRL 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>5 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb2.jpg' %}" alt="Drill Bosch2" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>DeWalt</td>
-                    <td>XR 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>1 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrilld1.jpg' %}" alt="Drill DeWalt" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>10 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcidrill2.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>4 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>3 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>7 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>2 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="htools">
-            <table id="httable" class="caption-top">
-                <caption id="htcap">Hand Tools</caption>
-                <tr>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Product ID</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col" id="thimg">Images</th>
-                </tr>
-                <tr>
-                    <th scope="row">Hammer</th>
-                    <td>DeWalt</td>
-                    <td>Standard</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>5 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>3 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>8 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>4 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>6 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>4 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>1 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>9 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="Access">
-            <table id="acstable" class="caption-top">
-                <caption id="acscap">Accessories</caption>
-                <tr>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Product ID</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col" id="thimg">Images</th>
-                </tr>
-                <tr id="rowprod">
-                    <th scope="row">Drill bits</th>
-                    <td>Bosh</td>
-                    <td>ph2</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>20 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>3 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>7 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>1 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>12 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>5 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>11 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row">Cordless Drill</th>
-                    <td>Bosh</td>
-                    <td>GHL7 18V</td>
-                    <td>01 <input class="selectBox" type="checkbox"> </td>
-                    <td>7 left</td>
-                    <td><img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="50" width="100"></td>
-                </tr>
-            </table>
-        </div>
+        <section>
+            <h2 class="fs-1 fw-bold mb-5">Power tools</h2>
+            <div class="ptools">
+            {% for product in products %}
+                <figure class="pttable">
+                    <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="80" width="100">
+                    <figcaption id="ptcap">
+                        <ul id="prodli" class="list-unstyled text-start">
+                            <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
+                            <li>{{ product.prod_brand }}</li>
+                            <li>{{ product.prod_model }}</li>
+                            <li>{{ product.prod_id_name }} <input class="selectBox" type="checkbox"> </li>
+                            <li>Stock {{ product.prod_stock }}</li>
+                        </ul>
+                    </figcaption>
+                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2">
+                            <a href="{% url 'products_store-basket_page' %}">Add</a>
+                    </button>
+                </figure>
+            {% endfor %}
+            </div>
+        </section>
+        <section class="htools">
+            <h2  class="fs-4 fw-bold">Hand tools</h2>
+            <figure id="httable" class="border border-dark border-3">
+                <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="100" width="100">
+                <figcaption id="htcap">
+                    <ul class="list-unstyled text-start">
+                        <li class="fs-4 fw-bold">Hammer</li>
+                        <li>DeWalt</li>
+                        <li>Standard</li>
+                        <li>01 <input class="selectBox" type="checkbox"> </li>
+                        <li>5 left</li>
+                    </ul>
+                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2"><a href="{% url 'products_store-basket_page' %}">Add</a></button>
+                </figcaption>
+            </figure>
+        </section>
+        <section class="access">
+            <h2 class="fs-4 fw-bold">Accessories</h2>
+            <figure id="acstable" class="border border-dark border-3">
+                <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="100" width="100">
+                <figcaption id="acscap">
+                <ul class="list-unstyled text-start">
+                    <li class="fs-4 fw-bold">Drill bits</li>
+                    <li>Bosh</li>
+                    <li>ph2</li>
+                    <li>01 <input class="selectBox" type="checkbox"> </li>
+                    <li>20 left</li>
+                </ul>
+                </figcaption>
+            </figure>
+        </section>
         {% if user.is_authenticated %}
         <section id="comlist">
                 <h3>Comments</h3>
