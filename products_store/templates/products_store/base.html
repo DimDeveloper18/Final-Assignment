@@ -54,6 +54,15 @@
             </div>
         </nav>
     <main>
+        {% if user.is_authenticated %}
+            <div id="profstats">
+                <p class="text-danger fw-bold">Loged in {{ user.username }}!</p>
+                <ul class="list-unstyled text-end">
+                    <li><a class="ps-1" href="{% url 'products_store-profile_page' %}">Enter to your Profile</a></li>
+                    <li><a class="ps-5" href="{% url 'products_store-comment-create' %}">Create Comment</a></li>
+                </ul>
+            </div>
+        {% endif%}
         <div id="msg_sup" class="fs-4 fw-bold bg-secondary text-white mb-5">
             {% if messages %}
                 {% for message in messages %}
@@ -67,10 +76,6 @@
         {% endblock main%}
     </main>
         <aside>
-            {% if user.is_authenticated %}
-                <p class="text-danger fw-bold ps-5">Loged in {{ user.username }}!</p>
-                <a class="ps-5" href="{% url 'products_store-profile_page' %}">Enter to your Profile</a>
-            {% endif%}
             <article class="martic">
                 <h4 id="asHead">Best latest offers</h4>
                 <article class="bsell1" id="battery">
