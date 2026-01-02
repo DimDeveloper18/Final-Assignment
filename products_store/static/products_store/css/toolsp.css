@@ -3,67 +3,57 @@
 #msg_sup{
     display: none;
 }
-#comw_img{
-    width: 70px;
-    height: 70px;
-}
 .ptools{
-    width: 98%;
+    width: 95%;
+    display: grid;
+    gap: 20px;
 }
-#pttable{
-    width: 90%;
-    height: auto;
+.pttable{
     border: 3px solid #d14d4d;
-    border-spacing: 0px;
+    box-shadow: 0 0 0 10px #7e7e7f, 0 0 0 15px #000000;
+    width: auto;
+    height: auto;
 }
-#ptcap{
-    font-weight: 600;
-    font-size: 26px;
-    margin: 20px;
+/* #ptcap{
+    width: 280px;
+    display: flex;
+} */
+.htools{
+    display: grid;
+    grid-template-columns: (1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
 }
 #httable{
-    width: 90%;
-    height: auto;
     border: 3px solid #d14d4d;
-    border-spacing: 0px;
+    box-shadow: 0 0 0 10px #7e7e7f, 0 0 0 15px #000000;
 }
 #htcap{
-    font-weight: 600;
-    font-size: 26px;
-    margin:20px;
+    width: 280px;
+    display: flex;
+}
+.access{
+    display: grid;
+    grid-template-columns: (1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
 }
 #acstable{
-    width: 90%;
-    height: auto;
     border: 3px solid #d14d4d;
-    border-spacing: 0px;
+    box-shadow: 0 0 0 10px #7e7e7f, 0 0 0 15px #000000;
 }
 #acscap{
-    font-weight: 600;
-    font-size: 26px;
-    margin:20px;
+    width: 280px;
+    display: flex;
 }
-th, tr, td{
-    border: 1px solid #7474ff;
-    text-align: center;
-    border-bottom-width: 3px;
+/* #prodadd{
+    width: 80px;
+    height: 40px;
+} */
+#prodli{
+    margin-left: 15px;
 }
-th[scope="col"]{
-    background-color: #7474ff;
-    border-bottom: 3px solid #000000;
-}
-th[scope="row"]{
-    background-color: #e0e2ff;
-}
-th, tr{
-    height: 70px;
-}
-td img{
-    display: none;
-}
-#thimg{
-    display: none;
-}
+
 }
 
             /* Medium screen size table style */
@@ -72,14 +62,18 @@ td img{
 #msg_sup{
     display: block;
 }
-#pttable{
-    width: 100%;
+.ptools{
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+/* .pttable{
+    width: auto;
     height: auto;
-}
-#ptcap{
-    font-size: 26px;
-    margin: 20px;
-}
+} */
+/* #ptcap{
+     min-width: auto;
+     display: flex;
+} */
 #httable{
     width: 100%;
     height: auto;
@@ -96,26 +90,17 @@ td img{
     font-size: 26px;
     margin:20px;
 }
-#thimg{
-    display: flex;
-}
- td img{
-    display: flex;
-    width: 100px;
-    height: 50px;
-}
+/* #prodli{
+    min-width: 300px;
+    height: 50;
+} */
  }
 
                     /* Large screen size table style */
  
                 @media screen and (min-width: 1440px){
-#ptcap{
-    font-size: 200%;
+.ptools{
+    column-gap: 40px;
 }
-#htcap{
-    font-size: 200%;
-}
-#acscap{
-    font-size: 200%;
-}
+
 }
