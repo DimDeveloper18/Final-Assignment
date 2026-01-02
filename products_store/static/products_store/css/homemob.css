@@ -81,6 +81,13 @@ main{
     text-align: center;
     margin: 0px 10px 0px 10px;
 }
+#profstats{
+    width: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
 #sec1pic img{
     width: 43vw;
     height: 20vh;
