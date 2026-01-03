@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Comment
+from .models import Comment, Product
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,10 +12,11 @@ def index(request):
     return render(request, 'products_store/index.html')
 
 def tools(request):
-    comments = {
+    context = {
         'comments': Comment.objects.all(),
+        'products': Product.objects.all(),
     }
-    return render(request, 'products_store/tools.html', comments)
+    return render(request, 'products_store/tools.html', context)
 
 def contact(request):
     return render(request, 'products_store/contact.html')
@@ -72,8 +73,8 @@ def comments_view(request):
 class CommentsList(ListView):
     model = Comment
     template_name = 'products_store/tools.html'
-    com_consist_object_name = 'comments'
-    com_sorting = ['-commented_date']
+    context_object_name = 'comments'
+    ordering = ['-commented_date']
 
 class CommentsDetail(DetailView):
     model = Comment
@@ -109,3 +110,9 @@ class CommentsDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == comment.comwriter:
             return True
         return False
+
+class Power_tools(ListView):
+    model = Product
+    template_name = 'products_store/tools.html'
+    context_object_name = 'products'
+    ordering = ['prod_name']
