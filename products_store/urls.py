@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .views import CommentsList, CommentsDetail, CommentsCreate, CommentsUpdate, CommentsDelete
+from .views import Power_tools
 
 urlpatterns = [
     path('', views.index, name='products_store-index'),
@@ -19,4 +20,5 @@ urlpatterns = [
     path('comment/create/', CommentsCreate.as_view(), name='products_store-comment-create'),
     path('comment/<int:pk>/update/', CommentsUpdate.as_view(), name='products_store-comment-update'),
     path('comment/<int:pk>/delete/', CommentsDelete.as_view(), name='products_store-comment-delete'),
+    path('tools/', Power_tools.as_view(), name='products_store-tools'),
 ]
