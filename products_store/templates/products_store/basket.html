@@ -2,7 +2,25 @@
 {% load static %}
 {% block main %}
         <section>
-            <h2>Basket</h2>
-            <p>Added items:</p>
+            <h2 class="fs-1 fw-bold w-50">Basket</h2>
+            <p class="fs-3 w-50">Added items:
+                {% for item in order.items.all %}
+                    <figure class="pttable">
+                        <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="80" width="100">
+                        <figcaption id="ptcap">
+                            <ul id="prodli" class="list-unstyled text-start">
+                                <li class="fs-4 fw-bold">{{ item.product.prod_name }}</li>
+                                <li>{{ item.product.prod_brand }}</li>
+                                <li>{{ item.product.prod_model }}</li>
+                                <li>{{ item.quantity }} x {{ item.product.prod_price }} €</li>
+                            </ul>
+                        </figcaption>
+                        <button id="prodremove" type="submit" class="btn btn-danger border border-dark border-2">
+                                <a class="text-light" href="{% url 'products_store-basket_remove' item.product.id %}">Remove</a>
+                        </button>
+                    </figure>
+                {% endfor %}
+            </p>
+            <p class="border border-dark border-2">Total price: €{{ order.total_price }}</p>
         </section>
 {% endblock main%}
