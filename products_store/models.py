@@ -28,7 +28,7 @@ class User_profile(models.Model):
     def __str__(self):
         return f'{self.user.username} User_profile'
     
-class Prod_type(models.Model):
+class Product_type(models.Model):
     prod_type_name = models.CharField(max_length=25)
 
     def __str__(self):
@@ -42,8 +42,40 @@ class Product(models.Model):
     prod_stock = models.CharField(max_length=20, unique=True)
     stock_date = models.DateTimeField(auto_now_add=True)
     prod_price = models.DecimalField(max_digits=10, decimal_places=2)
-    prod_type = models.ForeignKey(Prod_type, on_delete=models.RESTRICT, null=True)
+    prod_type = models.ForeignKey(Product_type, on_delete=models.RESTRICT, null=True)
     
     def __str__(self):
         return self.prod_name
+    
+class Product_stock(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    new_com = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.product.prod_name} - {self.quantity}"
+
+class Product_restock(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    restock = models.IntegerField()
+    stock_date = models.DateTimeField(auto_now_add=True)
+    prod_status = models.CharField(max_length=25)
+
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
+    # order_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Basket of {self.user.username}"
+    
+    def total_price(self):
+        return sum(item.product.prod_price * item.quantity for item in self.items.all())
+    
+class Product_order(models.Model):
+    order = models.ForeignKey(Basket, related_name="items", on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.product.prod_name} ({self.quantity})"
 
