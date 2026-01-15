@@ -40,7 +40,18 @@
         <nav>
             <ul>
                 <li><a href="{% url 'products_store-index' %}">Home</a></li>
-                <li><a href="{% url 'products_store-tools' %}">Tools</a></li>
+                <li id="toolsubnav"><a href="{% url 'products_store-tools' %}">Tools</a>
+                    <ul class="subtoollist">
+                        <li id="ptoollist"><a href="{% url 'products_store-tools' %}">Power tools</a>
+                            <ul class="subptnav">
+                                <li><a href="{% url 'products_store-tools' %}">Corded tools</a></li>
+                                <li><a href="{% url 'products_store-tools' %}">Cordless tools</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'products_store-tools' %}">Hand tools</a></li>
+                        <li><a href="{% url 'products_store-tools' %}">Accessories</a></li>
+                    </ul>
+                </li>
                 <li id="contli"><a href="{% url 'products_store-contact' %}">Contact us</a></li>
                 <li id="delivli"><a href="{% url 'products_store-delivery' %}">Delivery</a></li>
             </ul>
