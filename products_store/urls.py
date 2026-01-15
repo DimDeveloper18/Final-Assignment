@@ -21,4 +21,6 @@ urlpatterns = [
     path('comment/<int:pk>/update/', CommentsUpdate.as_view(), name='products_store-comment-update'),
     path('comment/<int:pk>/delete/', CommentsDelete.as_view(), name='products_store-comment-delete'),
     path('tools/', Power_tools.as_view(), name='products_store-tools'),
+    path('order/add/<int:product_id>/', views.add_to_basket, name='products_store-add_to_basket'),
+    path('order/remove/<int:product_id>', views.basket_remove, name='products_store-basket_remove')
 ]
