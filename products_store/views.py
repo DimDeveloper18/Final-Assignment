@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Comment, Product
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Comment, Product, Basket, Product_order
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -39,7 +39,9 @@ def reg_form(request):
 
 @login_required
 def basket_page(request):
-    return render(request, 'products_store/basket.html')
+    order, created = Basket.objects.get_or_create(user=request.user)
+
+    return render(request, 'products_store/basket.html', {'order':order})
 
 @login_required
 def profile_page(request):
@@ -55,8 +57,6 @@ def profile_page(request):
     else:
         uud_form = UserUpdateDetailsForm(instance=request.user)
         upu_form = User_profileUpdateForm(instance=request.user.user_profile)
-
-
 
     content = {
         'uud_form': uud_form,
@@ -116,3 +116,23 @@ class Power_tools(ListView):
     template_name = 'products_store/tools.html'
     context_object_name = 'products'
     ordering = ['prod_name']
+
+@login_required
+def add_to_basket(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    order, created = Basket.objects.get_or_create(user=request.user)
+    
+    order_item, created = Product_order.objects.get_or_create(order=order, product=product)
+    if not created:
+        order_item.quantity += 1
+    order_item.save()
+
+    return redirect('products_store-basket_page')
+    
+@login_required
+def basket_remove(request, product_id):
+    order = get_object_or_404(Basket, user=request.user)
+    order_item = get_object_or_404(Product_order, order=order, product_id=product_id)
+    order_item.delete()
+
+    return redirect('products_store-basket_page')
