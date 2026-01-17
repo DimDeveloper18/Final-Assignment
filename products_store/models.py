@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.urls import reverse
 from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary.utils import cloudinary_url
+from django.templatetags.static import static
 
 User = get_user_model()
 
@@ -38,14 +40,26 @@ class Product(models.Model):
     prod_name = models.CharField(max_length=50)
     prod_brand = models.CharField(max_length=25)
     prod_model = models.CharField(max_length=25)
-    prod_id_name = models.IntegerField(max_length=0)
+    prod_id_name = models.CharField(max_length=100)
     prod_stock = models.CharField(max_length=20, unique=True)
     stock_date = models.DateTimeField(auto_now_add=True)
     prod_price = models.DecimalField(max_digits=10, decimal_places=2)
     prod_type = models.ForeignKey(Product_type, on_delete=models.RESTRICT, null=True)
+    image = models.ImageField(storage=MediaCloudinaryStorage(), upload_to='product_pics/', null=True, blank=True)
     
     def __str__(self):
         return self.prod_name
+    
+    def get_image_url(self):
+        if self.image:
+            return cloudinary_url(
+                self.image.name, 
+                width=200, 
+                height=100, 
+                crop="scale"
+            )[0]
+        else:
+            return static('products_store/proddefault.jpg')
     
 class Product_stock(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
