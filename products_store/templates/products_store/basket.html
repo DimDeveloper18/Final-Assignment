@@ -6,7 +6,11 @@
             <p class="fs-3 w-50">Added items:
                 {% for item in order.items.all %}
                     <figure class="pttable">
-                        <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="80" width="100">
+                        <img src="{{ item.product.get_image_url }}"
+                                    class="shadow-lg" 
+                                    alt="Product image of {{product.prod_name}}" 
+                                    width="200" height="100" 
+                                    loading="lazy" decoding="async"/>
                         <figcaption id="ptcap">
                             <ul id="prodli" class="list-unstyled text-start">
                                 <li class="fs-4 fw-bold">{{ item.product.prod_name }}</li>
