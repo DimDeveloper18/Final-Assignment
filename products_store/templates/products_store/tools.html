@@ -2,59 +2,34 @@
 {% load static %}
 {% block main %}
     <div>
-        <section>
-            <h2 class="fs-1 fw-bold mb-5">Power tools</h2>
-            <div class="ptools">
-            {% for product in products %}
-                <figure class="pttable">
-                    <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="80" width="100">
-                    <figcaption id="ptcap">
-                        <ul id="prodli" class="list-unstyled text-start">
-                            <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
-                            <li>{{ product.prod_brand }}</li>
-                            <li>{{ product.prod_model }}</li>
-                            <li>Qty:<input class="selectBox" type="number" value="1" min="1" max="10"> {{ product.prod_price }} €</li>
-                            <li>Stock {{ product.prod_stock }}</li>
-                        </ul>
-                    </figcaption>
-                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2">
-                            <a class="text-light" href="{% url 'products_store-add_to_basket' product.id %}">Add</a>
-                    </button>
-                </figure>
-            {% endfor %}
-            </div>
-        </section>
-        <section class="htools">
-            <h2  class="fs-4 fw-bold">Hand tools</h2>
-            <figure id="httable" class="border border-dark border-3">
-                <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="100" width="100">
-                <figcaption id="htcap">
-                    <ul class="list-unstyled text-start">
-                        <li class="fs-4 fw-bold">Hammer</li>
-                        <li>DeWalt</li>
-                        <li>Standard</li>
-                        <li>01 <input class="selectBox" type="checkbox"> </li>
-                        <li>5 left</li>
-                    </ul>
-                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2"><a href="{% url 'products_store-basket_page' %}">Add</a></button>
-                </figcaption>
-            </figure>
-        </section>
-        <section class="access">
-            <h2 class="fs-4 fw-bold">Accessories</h2>
-            <figure id="acstable" class="border border-dark border-3">
-                <img src="{% static 'products_store/product_image/pcdrillb1.jpg' %}" alt="Drill Bosch1" height="100" width="100">
-                <figcaption id="acscap">
-                <ul class="list-unstyled text-start">
-                    <li class="fs-4 fw-bold">Drill bits</li>
-                    <li>Bosh</li>
-                    <li>ph2</li>
-                    <li>01 <input class="selectBox" type="checkbox"> </li>
-                    <li>20 left</li>
-                </ul>
-                </figcaption>
-            </figure>
-        </section>
+        {% for category in categories %}
+            <section>
+                    <h2 class="fs-1 fw-bold mb-5">{{ category.prod_type_name }}</h2>
+                <div class="ptools">
+                    {% for product in category.products.all %}
+                        <figure class="pttable">
+                                <img src="{{ product.get_image_url }}"
+                                    class="shadow-lg" 
+                                    alt="Product image of {{product.prod_name}}" 
+                                    width="200" height="100" 
+                                    loading="lazy" decoding="async" />
+                            <figcaption id="ptcap">
+                                <ul id="prodli" class="list-unstyled text-start">
+                                    <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
+                                    <li>{{ product.prod_brand }}</li>
+                                    <li>{{ product.prod_model }}</li>
+                                    <li>Qty:<input class="selectBox" type="number" value="1" min="1" max="10"> {{ product.prod_price }} €</li>
+                                    <li>Stock {{ product.prod_stock }}</li>
+                                </ul>
+                            </figcaption>
+                            <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2">
+                                    <a class="text-light" href="{% url 'products_store-add_to_basket' product.id %}">Add</a>
+                            </button>
+                        </figure>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
         {% if user.is_authenticated %}
         <section id="comlist">
                 <h3>Comments</h3>
