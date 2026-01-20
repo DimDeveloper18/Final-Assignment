@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Comment, Product, Basket, Product_order
+from .models import Comment, Product, Basket, Product_order, Product_type
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -15,6 +15,7 @@ def tools(request):
     context = {
         'comments': Comment.objects.all(),
         'products': Product.objects.all(),
+        'categories': Product_type.objects.all(),
     }
     return render(request, 'products_store/tools.html', context)
 
