@@ -32,6 +32,7 @@ class User_profile(models.Model):
     
 class Product_type(models.Model):
     prod_type_name = models.CharField(max_length=25)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.prod_type_name
