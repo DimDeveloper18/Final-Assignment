@@ -12,10 +12,18 @@ def index(request):
     return render(request, 'products_store/index.html')
 
 def tools(request):
+    category_slug = request.GET.get('category')
+
+    if category_slug:
+        products = Product.objects.filter(prod_type__slug=category_slug)
+    else:
+        products = Product.objects.all()
+
     context = {
         'comments': Comment.objects.all(),
-        'products': Product.objects.all(),
+        'products': products,
         'categories': Product_type.objects.all(),
+        'current_category': category_slug,
     }
     return render(request, 'products_store/tools.html', context)
 
