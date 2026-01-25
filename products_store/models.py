@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
@@ -42,7 +42,7 @@ class Product(models.Model):
     prod_brand = models.CharField(max_length=25)
     prod_model = models.CharField(max_length=25)
     prod_id_name = models.CharField(max_length=100)
-    prod_stock = models.CharField(max_length=20, unique=True)
+    prod_stock = models.PositiveIntegerField(default=0)
     stock_date = models.DateTimeField(auto_now_add=True)
     prod_price = models.DecimalField(max_digits=10, decimal_places=2)
     prod_type = models.ForeignKey(Product_type, on_delete=models.CASCADE, related_name="products")
@@ -57,24 +57,10 @@ class Product(models.Model):
                 self.image.name, 
                 width=200, 
                 height=100, 
-                crop="scale"
+                crop="pad"
             )[0]
         else:
             return static('products_store/proddefault.jpg')
-    
-class Product_stock(models.Model):
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0)
-    new_com = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.product.prod_name} - {self.quantity}"
-
-class Product_restock(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    restock = models.IntegerField()
-    stock_date = models.DateTimeField(auto_now_add=True)
-    prod_status = models.CharField(max_length=25)
 
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
@@ -93,4 +79,36 @@ class Product_order(models.Model):
 
     def __str__(self):
         return f"{self.product.prod_name} ({self.quantity})"
+    
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            if self.product.prod_stock < self.quantity:
+                raise ValueError("Out of stock")
+            
+            self.product.prod_stock -= self.quantity
+            self.product.save()
 
+        else:
+            prev_quantity = Product_order.objects.get(pk=self.pk).quantity
+            curnt_qty = self.quantity - prev_quantity
+
+            if curnt_qty > 0:
+                if self.product.prod_stock < curnt_qty:
+                    raise ValueError("Out of stock")
+                
+                self.product.prod_stock -= curnt_qty
+                self.product.save()
+
+            elif curnt_qty < 0:
+                self.product.prod_stock += abs(curnt_qty)
+                self.product.save()
+
+        super().save(*args, **kwargs)
+
+    @transaction.atomic
+    def delete(self, *args, **kwargs):
+        self.product.prod_stock += self.quantity
+        self.product.save()
+
+        super().delete(*args, **kwargs)
