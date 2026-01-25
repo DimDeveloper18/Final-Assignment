@@ -130,10 +130,13 @@ class Power_tools(ListView):
 def add_to_basket(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     order, created = Basket.objects.get_or_create(user=request.user)
+    qty = int(request.POST.get("quantity", 1))
     
     order_item, created = Product_order.objects.get_or_create(order=order, product=product)
-    if not created:
-        order_item.quantity += 1
+    if created:
+        order_item.quantity = qty
+    else:
+        order_item.quantity += qty
     order_item.save()
 
     return redirect('products_store-basket_page')
