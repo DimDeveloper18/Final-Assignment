@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from .models import User_profile
-from .models import Comment
+from .models import User_profile, Comment
+
 
 User = get_user_model()
 
