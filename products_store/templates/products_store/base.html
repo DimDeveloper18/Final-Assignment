@@ -26,14 +26,22 @@
                 <h1>Tools Store</h1>
                     <div class="regbutt">
                         {% if user.is_authenticated %}
-                                <button id="bask"><a href="{% url 'products_store-basket_page' %}">Basket</a></button>
+                                <a id="bask" href="{% url 'products_store-basket_page' %}" 
+                                    class="btn btn-light border border-dark border-2 btn-sm mt-2 me-1" 
+                                    style="height: 30px">Basket</a>
                                 <form method="POST" action="{% url 'products_store-logout' %}">
                                     {% csrf_token %}
-                                    <button id="logoutbtn" type="submit">Logout</button>
+                                    <button id="logoutbtn" type="submit" 
+                                        class="btn btn-light border border-dark border-2 btn-sm mt-2 me-1" 
+                                        style="height: 30px">Logout</button>
                                 </form>
                         {% else %}
-                            <button id="regBtn"><a href="{% url 'products_store-reg_form' %}">Registration</a></button>
-                            <button id="logBtn"><a href="{% url 'products_store-login' %}">Login</a></button>
+                            <a id="regBtn" href="{% url 'products_store-reg_form' %}" 
+                                class="btn btn-light border border-dark border-2 btn-sm mt-2 me-1" 
+                                style="height: 30px">Registration</a>
+                            <a id="logBtn" href="{% url 'products_store-login' %}" 
+                                class="btn btn-light border border-dark border-2 btn-sm mt-2 me-1" 
+                                style="height: 30px">Login</a>
                         {% endif %}
                     </div>
         </header>
@@ -55,6 +63,14 @@
                 <li id="contli"><a href="{% url 'products_store-contact' %}">Contact us</a></li>
                 <li id="delivli"><a href="{% url 'products_store-delivery' %}">Delivery</a></li>
             </ul>
+            <div id="searchbar" class="mt-1">
+                <search>
+                    <form method="GET" action="{% url 'products_store-product-search' %}">
+                        <input id="prodsearch" type="search" name="q" placeholder="Product search" value="{{ request.GET.q }}">
+                        <button type="submit">Search</button>
+                    </form>
+                </search>
+            </div>
             <div class="soclink">
                 <ul>
                     <li><a href="https://www.facebook.com/"><img src="{% static 'products_store/product_image/fbklink.png' %}" alt="Facebook" height="30" width="30"></a></li>
