@@ -25,6 +25,9 @@ nav{
     grid-row: 2;
     justify-content: space-between;
 }
+#searchbar{
+    display: flex;
+}
 .soclink{
     display: flex;
 }
