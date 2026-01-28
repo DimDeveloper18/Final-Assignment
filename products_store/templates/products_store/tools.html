@@ -24,12 +24,14 @@
                                 <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
                                 <li>{{ product.prod_brand }}</li>
                                 <li>{{ product.prod_model }}</li>
-                                <li>Qty:<input class="selectBox" type="number" 
+                                <li>
+                                    <label for="qty">Qty:</label>
+                                    <input class="selectBox" type="number" 
                                     name="quantity" value="1" min="1" max="{{ product.prod_stock }}"> {{ product.prod_price }} €</li>
                                 <li>Stock {{ product.prod_stock }}</li>
                             </ul>
                         </figcaption>
-                            <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2 text-light">
+                            <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2 text-light fw-bold mb-1">
                                     Add
                             </button>
                     </figure>
@@ -56,11 +58,13 @@
                                         <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
                                         <li>{{ product.prod_brand }}</li>
                                         <li>{{ product.prod_model }}</li>
-                                        <li>Qty:<input class="selectBox" type="number" name="quantity" value="1" min="1" max="{{ product.prod_stock }}"> {{ product.prod_price }} €</li>
+                                        <li>
+                                            <label for="qty">Qty:</label>
+                                            <input class="selectBox" type="number" name="quantity" value="1" min="1" max="{{ product.prod_stock }}"> {{ product.prod_price }} €</li>
                                         <li>Stock {{ product.prod_stock }}</li>
                                     </ul>
                                 </figcaption>
-                                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2 text-light">
+                                    <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2 text-light fw-bold mb-1">
                                             Add
                                     </button>
                             </figure>
@@ -78,6 +82,7 @@
                     <ul class="list-unstyled text-start border border-dark border-3 px-5">
                             <img src="{{ comment.comwriter.user_profile.image.url }}" 
                                 class="rounded border border-dark border-4 mt-1"
+                                alt="Profile image of {{user.username}}"
                                 width="70" heigth="70">
                             <li class="fs-4 fw-bold"><a href="{% url 'products_store-comments-view' %}">{{ comment.comname }}</a> </li>
                             <li class="fs-6"> Name: {{ comment.comwriter }} </li>
