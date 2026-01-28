@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 
 # Create your views here.
 
@@ -120,11 +121,15 @@ class CommentsDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-class Power_tools(ListView):
+class ProdSearch(ListView):
     model = Product
-    template_name = 'products_store/tools.html'
+    template_name = 'products_store/search_result.html'
     context_object_name = 'products'
     ordering = ['prod_name']
+
+    def get_queryset(self):
+        query = self.request.GET.get("q", "")
+        return Product.objects.filter(Q (prod_name__icontains=query) | Q (prod_brand__icontains=query))
 
 @login_required
 def add_to_basket(request, product_id):
