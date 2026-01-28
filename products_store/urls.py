@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import CommentsList, CommentsDetail, CommentsCreate, CommentsUpdate, CommentsDelete
+from .views import (CommentsList, 
+                    CommentsDetail, 
+                    CommentsCreate, 
+                    CommentsUpdate, 
+                    CommentsDelete, 
+                    ProdSearch)
 
 
 urlpatterns = [
@@ -22,4 +27,5 @@ urlpatterns = [
     path('comment/<int:pk>/delete/', CommentsDelete.as_view(), name='products_store-comment-delete'),
     path('order/add/<int:product_id>/', views.add_to_basket, name='products_store-add_to_basket'),
     path('order/remove/<int:product_id>', views.basket_remove, name='products_store-basket_remove'),
+    path('search/', ProdSearch.as_view(), name='products_store-product-search'),
 ]
