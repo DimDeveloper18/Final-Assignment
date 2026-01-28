@@ -1,0 +1,36 @@
+{% extends 'products_store/base.html' %}
+{% load static %}
+{% block main %}
+     <section>
+            {% if products %}
+                <h2 class="fs-1 fw-bold mb-5">{{ request.GET.q }}</h2>
+            {% endif %}
+                <div class="ptools">
+            {% for product in products %}
+                <form method="POST" action="{% url 'products_store-add_to_basket' product.id %}">
+                    {% csrf_token %}
+                    <figure class="pttable">
+                            <img src="{{ product.get_image_url }}"
+                                class="shadow-lg mt-3" 
+                                alt="Product image of {{product.prod_name}}" 
+                                width="200" height="100" 
+                                loading="lazy" decoding="async" />
+                        <figcaption id="ptcap">
+                            <ul id="prodli" class="list-unstyled text-start">
+                                <li class="fs-4 fw-bold">{{ product.prod_name }}</li>
+                                <li>{{ product.prod_brand }}</li>
+                                <li>{{ product.prod_model }}</li>
+                                <li>Qty:<input class="selectBox" type="number" 
+                                    name="quantity" value="1" min="1" max="{{ product.prod_stock }}"> {{ product.prod_price }} €</li>
+                                <li>Stock {{ product.prod_stock }}</li>
+                            </ul>
+                        </figcaption>
+                            <button id="prodadd" type="submit" class="btn btn-danger border border-dark border-2 text-light">
+                                    Add
+                            </button>
+                    </figure>
+                </form>
+            {% endfor %}
+                </div>
+            </section>
+{% endblock main %}
