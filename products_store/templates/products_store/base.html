@@ -52,8 +52,8 @@
                     <ul class="subtoollist">
                         <li id="ptoollist"><a href="{% url 'products_store-tools' %}?category=power-tools">Power tools</a>
                             <ul class="subptnav">
-                                <li><a href="{% url 'products_store-tools' %}">Corded tools</a></li>
-                                <li><a href="{% url 'products_store-tools' %}">Cordless tools</a></li>
+                                <li><a href="{% url 'products_store-tools' %}?subcategory=corded">Corded tools</a></li>
+                                <li><a href="{% url 'products_store-tools' %}?subcategory=cordless">Cordless tools</a></li>
                             </ul>
                         </li>
                         <li><a href="{% url 'products_store-tools' %}?category=hand-tools">Hand tools</a></li>
