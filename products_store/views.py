@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Comment, Product, Basket, Product_order, Product_type
+from .models import Comment, Product, Basket, Product_order, Product_type, Product_subtype
 from .forms import UserRegisterForm, UserUpdateDetailsForm, User_profileUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -14,8 +14,11 @@ def index(request):
 
 def tools(request):
     category_slug = request.GET.get('category')
+    subcategory_slug = request.GET.get('subcategory')
 
-    if category_slug:
+    if subcategory_slug:
+        products = Product.objects.filter(prod_subtype__slug=subcategory_slug)
+    elif category_slug:
         products = Product.objects.filter(prod_type__slug=category_slug)
     else:
         products = Product.objects.all()
@@ -25,6 +28,7 @@ def tools(request):
         'products': products,
         'categories': Product_type.objects.all(),
         'current_category': category_slug,
+        'current_subcategory': subcategory_slug,
     }
     return render(request, 'products_store/tools.html', context)
 
